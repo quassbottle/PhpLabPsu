@@ -1,0 +1,66 @@
+:root {
+    --accent-color: #7ecefd;
+    --base-color: #add5f7;
+    --background-color: white;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Segoe UI", sans-serif;
+    background: var(--background-color);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 30em;
+    padding: 15px;
+}
+
+input, select {
+    margin: 10px;
+    padding: 5px;
+    border: unset;
+    border-bottom: 2px solid #e3e3e3;
+    outline: none;
+}
+
+input[type="text"]:focus, input[type="password"]:focus {
+    border-bottom: 2px solid var(--accent-color);
+}
+
+button {
+    padding: 10px;
+    background: var(--base-color);
+    border: unset;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+#form-container {
+    margin: auto;
+    padding: 30px;
+    border: 1px solid #e3e3e3;
+    background: white;
+    border-radius: 10px;
+}
+
+#form-container h2, #form-container p {
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+
+#create-account {
+    font-size: small;
+    white-space: pre;
+}
