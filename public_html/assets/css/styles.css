@@ -60,7 +60,18 @@ button {
     justify-content: center
 }
 
+#form-container h2 {
+    margin-bottom: 10px;
+}
+
 #create-account {
     font-size: small;
     white-space: pre;
+}
+
+.alert {
+    border: 2px solid var(--accent-color);
+    border-radius: 3px;
+    padding: 10px;
+    text-align: center;
 }
