@@ -19,8 +19,6 @@
     require_once '../src/connect.php';
 
     session_start();
-
-    $users.add('penis');
 ?>
 <!doctype html>
 <html>

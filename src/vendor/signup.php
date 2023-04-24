@@ -1,5 +1,8 @@
 <?php
-    require_once 'src/connect.php';
+
+    use framework\JsonRepository;
+
+    //require_once 'src/connect.php';
 
     session_start();
 
@@ -18,7 +21,7 @@
         return;
     }
 
-    $user = json_encode([
+    $json = json_encode([
             'login' => strval($login),
             'password' => hash('sha256', strval($password)),
             'name' => strval($name),
@@ -26,3 +29,9 @@
             'sex' => strval($sex),
             'birthdate' => date(strval($birthdate))
         ], JSON_UNESCAPED_UNICODE);
+
+
+    $users = new JsonRepository('resources/users.json', gettype(new User()));
+    $users->add($json);
+
+    $user = $users->getById(1);
