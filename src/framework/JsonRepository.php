@@ -13,7 +13,10 @@ class JsonRepository implements Repository
 
     public function getById($id)
     {
-
+        $file = $this->_directory.'/'. $id .'.json';
+        if (!file_exists($file))
+            return null;
+        return json_decode(file_get_contents($file));
     }
 
     public function getAll(): array
@@ -28,30 +31,25 @@ class JsonRepository implements Repository
         return $objects;
     }
 
-    public function add($entity)
+    public function add($entity) : bool
     {
         $json = json_encode($entity);
-        file_put_contents($this->_directory, $json);
+        return file_put_contents($this->_directory.'/'.($this->count() + 1).'.json', $json);
     }
 
-    public function removeById($id)
+    public function removeById($id) : bool
     {
-
+        $file = $this->_directory.'/'. $id .'.json';
+        return unlink($file);
     }
 
-    public function updateById($id, $entity)
+    public function updateById($id, $entity) : bool
     {
-
+        return $this->removeById($id) && $this->add($entity);
     }
 
-//    private function appendJson($json) {
-//        $handle = @fopen($this->_file, 'a+');
-//
-//        if ($handle) {
-//            fseek($handle, -1, SEEK_END);
-//            fwrite($handle, ',', 1);
-//            fwrite($handle, $json);
-//            fclose($handle);
-//        }
-//    }
+    public function count() : int {
+        $files = glob($this->_directory.'/*.json');
+        return count($files);
+    }
 }
