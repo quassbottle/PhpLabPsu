@@ -2,16 +2,14 @@
 
 namespace framework;
 
-use framework\Repository;
+require 'Repository.php';
 
 class JsonRepository implements Repository
 {
     private string $_directory;
-    private string $_typeOf;
 
-    function __construct($directory, $typeOf) {
-        $this->_directory = $directory;
-        $this->_typeOf = $typeOf;
+    function __construct($directory) {
+        $this->_directory = $_SERVER['DOCUMENT_ROOT'].'/'.$directory;
     }
 
     public function getById($id)
@@ -19,7 +17,7 @@ class JsonRepository implements Repository
         $file = $this->_directory.'/'. $id .'.json';
         if (!file_exists($file))
             return null;
-        return $this->convertToType(json_decode(file_get_contents($file)));
+        return json_decode(file_get_contents($file));
     }
 
     public function getAll(): array
@@ -29,15 +27,17 @@ class JsonRepository implements Repository
         foreach ($files as $file) {
             $basename = basename($file);
             $id = substr($basename, 0, strlen($basename) - 5);
-            $objects[$id] = $this->convertToType(json_decode($file));
+            $objects[$id] = json_decode(file_get_contents($file));
         }
         return $objects;
     }
 
     public function add($entity) : bool
     {
+        $id = $this->count() + 1;
+        $entity['id'] = $id;
         $json = json_encode($entity);
-        return file_put_contents($this->_directory.'/'.($this->count() + 1).'.json', $json);
+        return file_put_contents($this->_directory.'/'.$id.'.json', $json);
     }
 
     public function removeById($id) : bool
@@ -54,12 +54,5 @@ class JsonRepository implements Repository
     public function count() : int {
         $files = glob($this->_directory.'/*.json');
         return count($files);
-    }
-
-    private function convertToType($json) {
-        $obj = new $this->_typeOf();
-        foreach ($json as $key => $value)
-            $obj->{$key} = $value;
-        return $obj;
     }
 }
