@@ -7,7 +7,7 @@
 <body>
     <div id="form-container">
         <h2>Регистрация</h2>
-        <form action="../src/vendor/signup.php" method="post">
+        <form>
             <label>Логин</label>
             <input name="login" type="text" placeholder="Введите свой логин" required>
             <label>Пароль</label>
@@ -25,11 +25,14 @@
             </select>
             <label>Дата рождения</label>
             <input name="birthdate" type="date" placeholder="Введите свою дату рождения" required>
-            <button type="submit">Создать аккаунт</button>
+            <button id="register-btn" type="submit">Создать аккаунт</button>
         </form>
         <p id="create-account">
             <a href="login.html">Вернуться к авторизации</a>
         </p>
     </div>
+
+    <script src="assets/js/lib/jquery-3.6.4.min.js"></script>
+    <script src="assets/js/register.js"></script>
 </body>
 </html>

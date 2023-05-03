@@ -19,7 +19,7 @@ body {
     background: var(--background-color);
 }
 
-form {
+form, #form-block {
     display: flex;
     flex-direction: column;
     width: 30em;
