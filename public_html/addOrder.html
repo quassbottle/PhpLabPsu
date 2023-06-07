@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form>
+      <label for="order-name">Название заказа:</label>
+      <select id="order-name" name="order-name">
+          <option value="book1">Книга 1</option>
+          <option value="book2">Книга 2</option>
+          <option value="book3">Книга 3</option>
+      </select>
+      <br>
+      <label for="quantity">Количество: x</label>
+      <input type="number" id="quantity" name="quantity" min="1" max="10" value="1">
+      <br>
+      <label for="pickup">Самовывоз:</label>
+      <input type="checkbox" id="pickup" name="pickup" value="yes">
+      <br>
+      <label for="price">Цена: x</label>
+      <input type="text" id="price" name="price" value="" readonly>
+      <br>
+      <input type="submit" value="Оформить заказ">
+    </form>
+</body>
+</html>
